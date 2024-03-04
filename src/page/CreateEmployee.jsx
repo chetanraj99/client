@@ -5,6 +5,7 @@ import Loader from "../components/Loader";
 const CreateEmployee = () => {
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
+
 	const [inputs, setInputs] = useState({
 		name: "rampravesh",
 		email: "ram123@gmail.com",
@@ -160,7 +161,7 @@ const CreateEmployee = () => {
 										type="checkbox"
 										id="bca"
 										name="course"
-										value="bca"
+										value="BCA"
 									/>
 									<label htmlFor="coding">BCA</label>
 								</div>

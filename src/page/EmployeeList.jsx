@@ -1,14 +1,26 @@
 import { Link } from "react-router-dom";
 import profileImage from "../assets/profie.jpg";
-import { useContext, useEffect } from "react";
+import { useContext, useState } from "react";
 import { GlobalContext } from "../context/ContextProvider";
+import DeleteEmployee from "../components/DeleteEmployee";
 
 const EmployeeList = () => {
 	const { employeeList, setEmployeeList } = useContext(GlobalContext);
+	const [deleteEmployee, setDeleteEmployee] = useState(false);
+	const [deleteSuccess, setDeleteSuccess] = useState(false);
+	const [empId, setEmpId] = useState(null);
+
 	return (
 		<div className="h-full">
 			<div className="px-6 bg-emerald-700 text-white py-2">
 				Create Employee Page
+			</div>
+			<div
+				className={`bg-green-400 ${
+					deleteSuccess ? "scale-100" : "scale-y-0"
+				} text-lg py-2 text-center transition-all origin-top`}
+			>
+				Employee Delete Successful.
 			</div>
 			<div className="flex justify-center items-center mt-10 text-white">
 				<table className="table-auto border w-[95%] py-5">
@@ -27,10 +39,10 @@ const EmployeeList = () => {
 						</tr>
 					</thead>
 					<tbody>
-						{employeeList.map((emp) => {
+						{employeeList.map((emp, ind) => {
 							return (
 								<tr
-									key={emp.id}
+									key={ind}
 									className="border h-12 even:bg-slate-600 odd:text-black text-center"
 								>
 									<td className="border">{emp.id}</td>
@@ -46,7 +58,16 @@ const EmployeeList = () => {
 									<td className="border">{emp.mobile}</td>
 									<td className="border">{emp.designation}</td>
 									<td className="border">{emp.gender}</td>
-									<td className="border">{emp.course}</td>
+									<td className="border">
+										{emp.course.map((c, ind, arr) => {
+											console.log(arr.length);
+											if (ind === arr.length - 1) {
+												console.log(ind);
+												return <span key={ind}>{c}</span>;
+											}
+											return <span key={ind}>{c}/</span>;
+										})}
+									</td>
 									<td className="border">{emp.createData}</td>
 									<td className=" space-x-4 text-white">
 										<Link
@@ -55,7 +76,13 @@ const EmployeeList = () => {
 										>
 											Edit
 										</Link>
-										<button className="bg-red-600 hover:bg-red-700 transition-all px-4 py-1 rounded text-xs">
+										<button
+											onClick={() => {
+												setDeleteEmployee(true);
+												setEmpId(emp.id);
+											}}
+											className="bg-red-600 hover:bg-red-700 transition-all px-4 py-1 rounded text-xs"
+										>
 											Delete
 										</button>
 									</td>
@@ -65,6 +92,13 @@ const EmployeeList = () => {
 					</tbody>
 				</table>
 			</div>
+			<DeleteEmployee
+				empId={empId}
+				deleteEmployee={deleteEmployee}
+				deleteSuccess={deleteSuccess}
+				setDeleteSuccess={setDeleteSuccess}
+				setDeleteEmployee={setDeleteEmployee}
+			/>
 		</div>
 	);
 };

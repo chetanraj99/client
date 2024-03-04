@@ -5,7 +5,7 @@ const Loader = ({ className }) => {
 	return (
 		<div
 			className={twMerge(
-				"h-6 w-6 border border-e-black rounded-full animate-spin",
+				"h-5 w-5 border border-e-black rounded-full animate-spin",
 				className
 			)}
 		></div>
