@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 const CreateEmployee = () => {
@@ -31,7 +32,18 @@ const CreateEmployee = () => {
 			}
 		});
 	};
-	console.table(inputs);
+
+	const handleFormSubmit = async (e) => {
+		e.preventDefault();
+		try {
+			const { data } = await axios.post(
+				"http://localhost:8080/employee/register",
+				inputs
+			);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 	return (
 		<div className="h-full">
 			<div className="px-6 bg-emerald-700 text-white py-2">
@@ -40,6 +52,7 @@ const CreateEmployee = () => {
 			<div className=" flex h-full ml-10 mt-10 justify-center">
 				<form
 					action=""
+					onSubmit={handleFormSubmit}
 					className="border-2 shadow-md min-h-[600px] h-[600px] gap-4 flex flex-col p-10 w-[500px]"
 				>
 					<div className="flex flex-col w-full">
@@ -177,7 +190,10 @@ const CreateEmployee = () => {
 						</fieldset>
 					</div>
 
-					<button className="bg-emerald-700  text-white py-1 rounded">
+					<button
+						type="submit"
+						className="bg-emerald-700  text-white py-1 rounded"
+					>
 						Create Employee{" "}
 					</button>
 				</form>
