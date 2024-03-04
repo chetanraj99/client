@@ -4,6 +4,7 @@ import Loader from "../components/Loader";
 
 const CreateEmployee = () => {
 	const [loading, setLoading] = useState(false);
+	const [success, setSuccess] = useState(false);
 	const [inputs, setInputs] = useState({
 		name: "rampravesh",
 		email: "ram123@gmail.com",
@@ -44,6 +45,10 @@ const CreateEmployee = () => {
 				inputs
 			);
 			setLoading(false);
+			setSuccess(true);
+			setTimeout(() => {
+				setSuccess(false);
+			}, 3000);
 		} catch (error) {
 			setLoading(false);
 			console.log(error);
@@ -202,6 +207,13 @@ const CreateEmployee = () => {
 						{loading && <Loader className={"h-5 w-5"} />}
 						{loading ? "Creating" : "Create"} Employee{" "}
 					</button>
+					<div
+						className={`bg-slate-400 ${
+							success ? "scale-100" : "scale-0"
+						} border py-3 rounded text-center transition-all`}
+					>
+						Employee Created Successfully
+					</div>
 				</form>
 			</div>
 		</div>
