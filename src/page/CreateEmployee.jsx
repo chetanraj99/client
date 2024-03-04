@@ -1,12 +1,14 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useTransition } from "react";
+import Loader from "../components/Loader";
 
 const CreateEmployee = () => {
+	const [loading, setLoading] = useState(false);
 	const [inputs, setInputs] = useState({
 		name: "rampravesh",
 		email: "ram123@gmail.com",
 		mobile: "913383388338",
-		designation: "",
+		designation: "HR",
 		course: [],
 		gender: "Male",
 	});
@@ -36,11 +38,14 @@ const CreateEmployee = () => {
 	const handleFormSubmit = async (e) => {
 		e.preventDefault();
 		try {
+			setLoading(true);
 			const { data } = await axios.post(
 				"http://localhost:8080/employee/register",
 				inputs
 			);
+			setLoading(false);
 		} catch (error) {
+			setLoading(false);
 			console.log(error);
 		}
 	};
@@ -192,9 +197,10 @@ const CreateEmployee = () => {
 
 					<button
 						type="submit"
-						className="bg-emerald-700  text-white py-1 rounded"
+						className="bg-emerald-700 items-center gap-3 flex justify-center  text-white py-1 rounded"
 					>
-						Create Employee{" "}
+						{loading && <Loader className={"h-5 w-5"} />}
+						{loading ? "Creating" : "Create"} Employee{" "}
 					</button>
 				</form>
 			</div>
