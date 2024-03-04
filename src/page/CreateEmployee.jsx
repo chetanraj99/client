@@ -208,9 +208,9 @@ const CreateEmployee = () => {
 						{loading ? "Creating" : "Create"} Employee{" "}
 					</button>
 					<div
-						className={`bg-slate-400 ${
-							success ? "scale-100" : "scale-0"
-						} border py-3 rounded text-center transition-all`}
+						className={`bg-green-500 ${
+							success ? "scale-y-100" : "scale-y-0"
+						} border py-3 rounded text-center origin-top transition-all`}
 					>
 						Employee Created Successfully
 					</div>
