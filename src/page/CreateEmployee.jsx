@@ -176,12 +176,6 @@ const CreateEmployee = () => {
 							</div>
 						</fieldset>
 					</div>
-					{/* <div className="flex items-center justify-between gap-4 ">
-						<label htmlFor="image" className="font-semibold">
-							Image Upload
-						</label>
-						<input type="file" className="text-sm" />
-					</div> */}
 
 					<button className="bg-emerald-700  text-white py-1 rounded">
 						Create Employee{" "}
