@@ -1,76 +1,10 @@
 import { Link } from "react-router-dom";
 import profileImage from "../assets/profie.jpg";
-
-const employeeData = [
-	{
-		id: 1,
-		image: "im",
-		name: "Ram",
-		email: "ram123@gmail.com",
-		mobile: "+91-8703747384",
-		designation: "HR",
-		gender: "Male",
-		course: "BSC",
-		createData: "2-27-2024",
-	},
-	{
-		id: 2,
-		image: "im",
-		name: "Ram",
-		email: "ram123@gmail.com",
-		mobile: "+91-8703747384",
-		designation: "HR",
-		gender: "Male",
-		course: "BSC",
-		createData: "2-27-2024",
-	},
-	{
-		id: 3,
-		image: "im",
-		name: "Ram",
-		email: "ram123@gmail.com",
-		mobile: "+91-8703747384",
-		designation: "HR",
-		gender: "Male",
-		course: "BSC",
-		createData: "2-27-2024",
-	},
-	{
-		id: 4,
-		image: "im",
-		name: "Ram",
-		email: "ram123@gmail.com",
-		mobile: "+91-8703747384",
-		designation: "HR",
-		gender: "Male",
-		course: "BSC",
-		createData: "2-27-2024",
-	},
-	{
-		id: 5,
-		image: "im",
-		name: "Ram",
-		email: "ram123@gmail.com",
-		mobile: "+91-8703747384",
-		designation: "HR",
-		gender: "Male",
-		course: "BSC",
-		createData: "2-27-2024",
-	},
-	{
-		id: 6,
-		image: "im",
-		name: "Ram",
-		email: "ram123@gmail.com",
-		mobile: "+91-8703747384",
-		designation: "HR",
-		gender: "Male",
-		course: "BSC",
-		createData: "2-27-2024",
-	},
-];
+import { useContext, useEffect } from "react";
+import { GlobalContext } from "../context/ContextProvider";
 
 const EmployeeList = () => {
+	const { employeeList, setEmployeeList } = useContext(GlobalContext);
 	return (
 		<div className="h-full">
 			<div className="px-6 bg-emerald-700 text-white py-2">
@@ -93,7 +27,7 @@ const EmployeeList = () => {
 						</tr>
 					</thead>
 					<tbody>
-						{employeeData.map((emp) => {
+						{employeeList.map((emp) => {
 							return (
 								<tr
 									key={emp.id}
