@@ -11,27 +11,39 @@ const Register = () => {
 					className="border-2 shadow-md h-[300px] gap-4 flex flex-col p-10 w-[500px]"
 				>
 					<div className="flex flex-col w-full">
-						<label htmlFor="usrname" className="text-xl">
-							Username
+						<label htmlFor="name" className="text-xl">
+							Name
 						</label>
 						<input
 							type="text"
-							id="username"
+							id="name"
 							className="w-full border border-gray-600 px-1 rounded py-1"
-							placeholder="Username"
+							placeholder="Name"
 						/>
 					</div>
 					<div className="flex flex-col w-full">
-						<label htmlFor="usrname" className="text-xl">
+						<label htmlFor="email" className="text-xl">
+							Email
+						</label>
+						<input
+							type="text"
+							id="email"
+							className="w-full border border-gray-600 px-1 rounded py-1"
+							placeholder="Email"
+						/>
+					</div>
+					<div className="flex flex-col w-full">
+						<label htmlFor="password" className="text-xl">
 							Password
 						</label>
 						<input
-							type="password"
+							type="text"
 							id="password"
 							className="w-full border border-gray-600 px-1 rounded py-1"
 							placeholder="Password"
 						/>
 					</div>
+
 					<button className="bg-emerald-700 text-xl text-white py-1 rounded">
 						Register{" "}
 					</button>
