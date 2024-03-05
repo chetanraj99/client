@@ -64,7 +64,7 @@ const CreateEmployee = () => {
 				<form
 					action=""
 					onSubmit={handleFormSubmit}
-					className="border-2 shadow-md min-h-[600px] h-[600px] gap-4 flex flex-col p-10 w-[500px]"
+					className="border-2 shadow-md min-h-[600px] h-[600px] gap-5 flex flex-col p-10 w-[500px]"
 				>
 					<div className="flex flex-col w-full">
 						<label htmlFor="name" className="font-semibold">
@@ -117,7 +117,7 @@ const CreateEmployee = () => {
 							id="designation"
 							value={inputs.designation}
 							onChange={handleInputChange}
-							className="w-full border border-gray-600 px-1 rounded py-1"
+							className="w-full border  border-gray-600 px-1 rounded py-1"
 						>
 							<option value="hr">HR </option>
 							<option value="manager">Manager </option>
@@ -133,6 +133,7 @@ const CreateEmployee = () => {
 									onChange={handleInputChange}
 									type="radio"
 									name="gender"
+									className="accent-emerald-600 transition-all h-4 w-4 p-6"
 									id="male"
 									value="Male"
 									checked={inputs.gender === "Male"}
@@ -145,54 +146,71 @@ const CreateEmployee = () => {
 									type="radio"
 									name="gender"
 									id="female"
+									className="accent-emerald-600 transition-all h-4 w-4 p-6"
 									value="Female"
 									checked={inputs.gender === "Female"}
 								/>
 							</div>
+							<div className="flex items-center gap-2">
+								<label htmlFor="other">Other</label>
+								<input
+									onChange={handleInputChange}
+									type="radio"
+									name="gender"
+									id="other"
+									className="accent-emerald-600 transition-all h-4 w-4 p-6"
+									value="Other"
+									checked={inputs.gender === "Other"}
+								/>
+							</div>
 						</div>
 					</div>
-					<div className="flex  gap-8 w-full">
-						<fieldset className="flex justify-between gap-10">
+					<div className="flex justify-start items-center gap-8 w-full">
+						<fieldset className="flex  justify-between gap-10">
 							<legend className="font-semibold">Course</legend>
 							<div>
-								<div className="flex gap-4">
+								<div className="flex gap-4  items-center">
 									<input
 										onChange={handleCheckboxChange}
 										type="checkbox"
 										id="bca"
 										name="course"
+										className="accent-emerald-600 transition-all h-4 w-4 "
 										value="BCA"
 									/>
 									<label htmlFor="coding">BCA</label>
 								</div>
-								<div className="flex gap-4">
+								<div className="flex gap-4  items-center">
 									<input
 										onChange={handleCheckboxChange}
 										type="checkbox"
 										id="mca"
 										name="course"
+										className="accent-emerald-600 transition-all h-4 w-4 "
 										value="mca"
 									/>
 									<label htmlFor="music">MCA</label>
 								</div>
 							</div>
 							<div>
-								<div className="flex gap-4">
+								<div className="flex gap-4  items-center">
 									<input
 										onChange={handleCheckboxChange}
 										type="checkbox"
 										id="BSC"
+										className="accent-emerald-600 transition-all h-4 w-4 "
 										name="course"
 										value="bsc"
 									/>
 									<label htmlFor="music">BSC</label>
 								</div>
-								<div className="flex gap-4">
+								<div className="flex gap-4  items-center">
 									<input
 										onChange={handleCheckboxChange}
 										type="checkbox"
 										id="cse"
 										name="course"
+										className="accent-emerald-600 transition-all h-4 w-4 "
 										value="cse"
 									/>
 									<label htmlFor="music">CSE</label>
@@ -203,7 +221,7 @@ const CreateEmployee = () => {
 
 					<button
 						type="submit"
-						className="bg-emerald-700 items-center gap-3 flex justify-center  text-white py-1 rounded"
+						className="bg-emerald-700 mt-10 items-center gap-3 flex justify-center  text-white py-1 rounded"
 					>
 						{loading && <Loader className={"h-5 w-5"} />}
 						{loading ? "Creating" : "Create"} Employee{" "}
