@@ -60,9 +60,7 @@ const EmployeeList = () => {
 									<td className="border">{emp.gender}</td>
 									<td className="border">
 										{emp.course.map((c, ind, arr) => {
-											console.log(arr.length);
 											if (ind === arr.length - 1) {
-												console.log(ind);
 												return <span key={ind}>{c}</span>;
 											}
 											return <span key={ind}>{c}/</span>;

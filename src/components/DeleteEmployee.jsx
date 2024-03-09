@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Loader from "./Loader";
+import baseURL from "../api/axiosApi";
+import axios from "axios";
+import { GlobalContext } from "../context/ContextProvider";
 
 const DeleteEmployee = ({
 	empId,
@@ -9,6 +12,7 @@ const DeleteEmployee = ({
 	setDeleteSuccess,
 }) => {
 	const [loading, setLoading] = useState(false);
+	const { setEmployeeList } = useContext(GlobalContext);
 	useEffect(() => {
 		document.body.style.overflow = deleteEmployee ? "hidden" : "auto";
 	}, [deleteEmployee]);
@@ -16,15 +20,21 @@ const DeleteEmployee = ({
 	const handleDeleteEmployee = async () => {
 		try {
 			setLoading(true);
-			// const { data } = await axios.delete(
-			// 	`http://localhost:8080/employee/employeedeelete/${empId}`
-			// );
-			setDeleteSuccess(true);
+			const { data } = await axios.delete(
+				`${baseURL}/employee/delete/${empId}`
+			);
+
 			setTimeout(() => {
 				setDeleteSuccess(false);
 				setDeleteEmployee(false);
 				setLoading(false);
-			}, 3000);
+				setDeleteSuccess(true);
+				setEmployeeList((presState) =>
+					presState.filter((emp) => {
+						return emp.id !== empId;
+					})
+				);
+			}, 1000);
 		} catch (error) {
 			console.log(error);
 		}

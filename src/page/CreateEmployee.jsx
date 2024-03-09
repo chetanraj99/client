@@ -1,10 +1,13 @@
 import axios from "axios";
-import { useState, useTransition } from "react";
+import { useContext, useState, useTransition } from "react";
 import Loader from "../components/Loader";
+import baseURL from "../api/axiosApi";
+import { GlobalContext } from "../context/ContextProvider";
 
 const CreateEmployee = () => {
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
+	const { setEmployeeList } = useContext(GlobalContext);
 
 	const [inputs, setInputs] = useState({
 		name: "rampravesh",
@@ -41,15 +44,14 @@ const CreateEmployee = () => {
 		e.preventDefault();
 		try {
 			setLoading(true);
-			const { data } = await axios.post(
-				"http://localhost:8080/employee/register",
-				inputs
-			);
+			const { data } = await axios.post(`${baseURL}/employee/create`, inputs);
 			setLoading(false);
 			setSuccess(true);
 			setTimeout(() => {
 				setSuccess(false);
 			}, 3000);
+			console.log(data);
+			setEmployeeList((preState) => [...preState, data]);
 		} catch (error) {
 			setLoading(false);
 			console.log(error);
@@ -60,11 +62,11 @@ const CreateEmployee = () => {
 			<div className="px-6 bg-emerald-700 text-white py-2">
 				Create Employee Page
 			</div>
-			<div className=" flex h-full ml-10 mt-10 justify-center">
+			<div className=" flex h-full ml-10 py-10 mt-3  justify-center">
 				<form
 					action=""
 					onSubmit={handleFormSubmit}
-					className="border-2 shadow-md min-h-[600px] h-[600px] gap-5 flex flex-col p-10 w-[500px]"
+					className="border-2 shadow-md min-h-[600px] h-[630px] gap-5 flex flex-col p-10 w-[500px]"
 				>
 					<div className="flex flex-col w-full">
 						<label htmlFor="name" className="font-semibold">
@@ -229,7 +231,7 @@ const CreateEmployee = () => {
 					<div
 						className={`bg-green-500 ${
 							success ? "scale-y-100" : "scale-y-0"
-						} border py-3 rounded text-center origin-top transition-all`}
+						} border py-2 rounded text-white text-center origin-top transition-all`}
 					>
 						Employee Created Successfully
 					</div>

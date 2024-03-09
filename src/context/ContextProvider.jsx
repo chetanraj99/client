@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
+import baseURL from "../api/axiosApi";
 export const GlobalContext = createContext();
 const ContextProvider = ({ children }) => {
 	const [loading, setLoading] = useState(false);
@@ -14,11 +15,8 @@ const ContextProvider = ({ children }) => {
 	useEffect(() => {
 		const getEmployeeList = async () => {
 			try {
-				const { data } = await axios.get(
-					"http://localhost:8080/employee/employees"
-				);
+				const { data } = await axios.get(`${baseURL}/employee/employees`);
 				setEmployeeList(data);
-				console.log(data);
 			} catch (error) {}
 		};
 		getEmployeeList();
