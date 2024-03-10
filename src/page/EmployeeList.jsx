@@ -27,14 +27,14 @@ const EmployeeList = () => {
 					<thead className="bg-teal-800 py-4 h-12 ">
 						<tr className="divide-x-2 py-4">
 							<th>ID</th>
-							<th>Image</th>
+							<th className="">Image</th>
 							<th>Name</th>
-							<th>Email</th>
-							<th>Mobile Number</th>
-							<th>Designation</th>
-							<th>Gender</th>
-							<th>Course</th>
-							<th>Created Date</th>
+							<th className="">Email</th>
+							<th className="">Mobile Number</th>
+							<th className="">Designation</th>
+							<th className="">Gender</th>
+							<th className="">Course</th>
+
 							<th className="w-44">Action</th>
 						</tr>
 					</thead>
@@ -43,22 +43,24 @@ const EmployeeList = () => {
 							return (
 								<tr
 									key={ind}
-									className="border h-12 even:bg-slate-600 odd:text-black text-center"
+									className="border border-black px-1 h-12 even:bg-slate-600 odd:text-black text-center"
 								>
-									<td className="border">{emp.id}</td>
-									<td className=" flex justify-center items-center">
+									<td className="border border-black px-1">{emp.id}</td>
+									<td className=" border border-black px-1  justify-center items-center">
 										<img
 											src={profileImage}
 											alt="profile-image"
 											className="w-5 h-5 mt-3 rounded-full ring-2"
 										/>
 									</td>
-									<td className="border">{emp.name}</td>
-									<td className="border">{emp.email}</td>
-									<td className="border">{emp.mobile}</td>
-									<td className="border">{emp.designation}</td>
-									<td className="border">{emp.gender}</td>
-									<td className="border">
+									<td className="border border-black px-1">{emp.name}</td>
+									<td className="border  border-black px-1">{emp.email}</td>
+									<td className="border border-black px-1 ">{emp.mobile}</td>
+									<td className="border border-black px-1 ">
+										{emp.designation}
+									</td>
+									<td className="border border-black px-1 ">{emp.gender}</td>
+									<td className="border border-black px-1 ">
 										{emp.course.map((c, ind, arr) => {
 											if (ind === arr.length - 1) {
 												return <span key={ind}>{c}</span>;
@@ -66,8 +68,8 @@ const EmployeeList = () => {
 											return <span key={ind}>{c}/</span>;
 										})}
 									</td>
-									<td className="border">{emp.createData}</td>
-									<td className=" space-x-4 text-white">
+
+									<td className="border border-black px-1 space-x-4 gap-2 text-white">
 										<Link
 											to={`/employeeedit/${emp.id}`}
 											className="bg-blue-600 hover:bg-blue-700 transition-all px-4 py-1 text-xs rounded"

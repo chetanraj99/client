@@ -15,10 +15,11 @@ const Header = () => {
 					<GiHamburgerMenu className="text-2xl" />
 				</button>
 			</div>
+			{/* mobile menu */}
 			<div
 				className={`fixed ${
 					menu ? "scale-100" : "scale-0"
-				} flex flex-col pt-20 items-center transition-all origin-top-right text-white text-5xl bg-slate-900 inset-0`}
+				} flex flex-col pt-20 items-center transition-all origin-top-right text-white text-3xl bg-slate-900 inset-0`}
 			>
 				<button
 					className="absolute top-2 right-4 text-2xl"
@@ -59,6 +60,7 @@ const Header = () => {
 				)}
 			</div>
 
+			{/* for desktop */}
 			{loggedIn && (
 				<div className="px-8  md:flex hidden justify-between bg-gray-200 py-2">
 					<NavLink
