@@ -9,7 +9,6 @@ const EmployeeEdit = () => {
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
 	const { setEmployeeList } = useContext(GlobalContext);
-	const [employeeData, setEmployeeData] = useState({});
 	const { id } = useParams();
 
 	const [inputs, setInputs] = useState({
@@ -26,7 +25,6 @@ const EmployeeEdit = () => {
 		setInputs((preState) => {
 			return { ...preState, [name]: value };
 		});
-		console.log(inputs);
 	};
 	const handleCheckboxChange = (e) => {
 		const value = e.target.value;
@@ -53,11 +51,22 @@ const EmployeeEdit = () => {
 			);
 			setLoading(false);
 			setSuccess(true);
+			console.log(data);
+			setEmployeeList((preState) => {
+				return preState.map((emp) => {
+					console.log(typeof emp.id);
+					console.log(typeof id);
+					if (emp.id === +id) {
+						return { ...data };
+					} else {
+						return emp;
+					}
+				});
+			});
 			setTimeout(() => {
 				setSuccess(false);
 				setInputs(data);
 			}, 1000);
-			// setEmployeeList((preState) => [...preState, data]);
 		} catch (error) {
 			setLoading(false);
 			console.log(error);

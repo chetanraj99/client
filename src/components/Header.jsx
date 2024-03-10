@@ -1,5 +1,5 @@
+import { HiMenuAlt3 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
-import { GiHamburgerMenu } from "react-icons/gi";
 import React, { useContext, useState } from "react";
 import { GlobalContext } from "../context/ContextProvider";
 import { NavLink } from "react-router-dom";
@@ -12,7 +12,7 @@ const Header = () => {
 			<div className="bg-gray-800 text-2xl flex justify-between items-center  text-white py-2 px-4">
 				<div>EMS</div>
 				<button className="md:hidden" onClick={() => setMenu(true)}>
-					<GiHamburgerMenu className="text-2xl" />
+					<HiMenuAlt3 />
 				</button>
 			</div>
 			{/* mobile menu */}
@@ -22,7 +22,7 @@ const Header = () => {
 				} flex flex-col pt-20 items-center transition-all origin-top-right text-white text-3xl bg-slate-900 inset-0`}
 			>
 				<button
-					className="absolute top-2 right-4 text-2xl"
+					className="absolute top-4 right-4 text-2xl"
 					onClick={() => setMenu(false)}
 				>
 					<AiOutlineClose />
