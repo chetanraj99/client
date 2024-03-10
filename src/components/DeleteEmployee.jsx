@@ -20,21 +20,21 @@ const DeleteEmployee = ({
 	const handleDeleteEmployee = async () => {
 		try {
 			setLoading(true);
-			const { data } = await axios.delete(
-				`${baseURL}/employee/delete/${empId}`
-			);
+			await axios.delete(`${baseURL}/employee/delete/${empId}`);
 
 			setTimeout(() => {
-				setDeleteSuccess(false);
 				setDeleteEmployee(false);
-				setLoading(false);
 				setDeleteSuccess(true);
+				setLoading(false);
 				setEmployeeList((presState) =>
 					presState.filter((emp) => {
 						return emp.id !== empId;
 					})
 				);
 			}, 1000);
+			setTimeout(() => {
+				setDeleteSuccess(false);
+			}, 3000);
 		} catch (error) {
 			console.log(error);
 		}

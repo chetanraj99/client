@@ -5,12 +5,7 @@ export const GlobalContext = createContext();
 const ContextProvider = ({ children }) => {
 	const [loading, setLoading] = useState(false);
 	const [loggedIn, setLoggedIn] = useState(true);
-	const [employeeList, setEmployeeList] = useState([
-		{
-			name: "",
-			course: ["BCA", "MCA", "B-Tech"],
-		},
-	]);
+	const [employeeList, setEmployeeList] = useState([]);
 
 	useEffect(() => {
 		const getEmployeeList = async () => {

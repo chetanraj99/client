@@ -41,6 +41,7 @@ const CreateEmployee = () => {
 	};
 
 	const handleFormSubmit = async (e) => {
+		console.log(inputs);
 		e.preventDefault();
 		try {
 			setLoading(true);
@@ -59,14 +60,14 @@ const CreateEmployee = () => {
 	};
 	return (
 		<div className="h-full">
-			<div className="px-6 bg-emerald-700 text-white py-2">
+			<div className="px-6 bg-emerald-700 text-white py-2 w-full">
 				Create Employee Page
 			</div>
-			<div className=" flex h-full ml-10 py-10 mt-3  justify-center">
+			<div className=" flex h-full py-10 mt-3 w-full  justify-center">
 				<form
 					action=""
 					onSubmit={handleFormSubmit}
-					className="border-2 shadow-md min-h-[600px] h-[630px] gap-5 flex flex-col p-10 w-[500px]"
+					className="md:border-2  md:shadow-md min-h-[600px] h-[630px] gap-5 flex  flex-col p-4 md:p-10 max-w-[500px] w-full md:max-w-[500px] "
 				>
 					<div className="flex flex-col w-full">
 						<label htmlFor="name" className="font-semibold">
@@ -128,8 +129,8 @@ const CreateEmployee = () => {
 					</div>
 					<div className="flex  gap-8 w-full">
 						<div className="font-semibold">Gender</div>
-						<div className="flex items-center gap-4 ">
-							<div className="flex items-center gap-2">
+						<div className="flex    items-center gap-4 ">
+							<div className="flex  items-center gap-2">
 								<label htmlFor="male">Male</label>
 								<input
 									onChange={handleInputChange}
@@ -168,9 +169,9 @@ const CreateEmployee = () => {
 						</div>
 					</div>
 					<div className="flex justify-start items-center gap-8 w-full">
-						<fieldset className="flex  justify-between gap-10">
+						<fieldset className="grid   grid-cols-2 items-center content-center justify-center gap-10">
 							<legend className="font-semibold">Course</legend>
-							<div>
+							<div className="">
 								<div className="flex gap-4  items-center">
 									<input
 										onChange={handleCheckboxChange}
@@ -189,7 +190,7 @@ const CreateEmployee = () => {
 										id="mca"
 										name="course"
 										className="accent-emerald-600 transition-all h-4 w-4 "
-										value="mca"
+										value="MCA"
 									/>
 									<label htmlFor="music">MCA</label>
 								</div>
@@ -202,7 +203,7 @@ const CreateEmployee = () => {
 										id="BSC"
 										className="accent-emerald-600 transition-all h-4 w-4 "
 										name="course"
-										value="bsc"
+										value="BSC"
 									/>
 									<label htmlFor="music">BSC</label>
 								</div>
@@ -213,7 +214,7 @@ const CreateEmployee = () => {
 										id="cse"
 										name="course"
 										className="accent-emerald-600 transition-all h-4 w-4 "
-										value="cse"
+										value="CSE"
 									/>
 									<label htmlFor="music">CSE</label>
 								</div>

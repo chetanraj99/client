@@ -22,8 +22,8 @@ const EmployeeList = () => {
 			>
 				Employee Delete Successful.
 			</div>
-			<div className="flex justify-center items-center mt-10 text-white">
-				<table className="table-auto border w-[95%] py-5">
+			<div className="flex justify-center items-center mt-10 text-white w-full overflow-scroll">
+				<table className="table-auto border md:w-[95%] py-5 w-full">
 					<thead className="bg-teal-800 py-4 h-12 ">
 						<tr className="divide-x-2 py-4">
 							<th>ID</th>

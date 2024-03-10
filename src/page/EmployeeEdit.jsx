@@ -1,21 +1,24 @@
 import axios from "axios";
-import { useContext, useState, useTransition } from "react";
+import { useContext, useEffect, useState, useTransition } from "react";
 import Loader from "../components/Loader";
 import baseURL from "../api/axiosApi";
 import { GlobalContext } from "../context/ContextProvider";
+import { useParams } from "react-router-dom";
 
 const EmployeeEdit = () => {
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
 	const { setEmployeeList } = useContext(GlobalContext);
+	const [employeeData, setEmployeeData] = useState({});
+	const { id } = useParams();
 
 	const [inputs, setInputs] = useState({
-		name: "rampravesh",
-		email: "ram123@gmail.com",
-		mobile: "913383388338",
-		designation: "HR",
+		name: "",
+		email: "",
+		mobile: "",
+		designation: "",
 		course: [],
-		gender: "Male",
+		gender: "",
 	});
 	const handleInputChange = (e) => {
 		const value = e.target.value;
@@ -44,19 +47,34 @@ const EmployeeEdit = () => {
 		e.preventDefault();
 		try {
 			setLoading(true);
-			const { data } = await axios.post(`${baseURL}/employee/create`, inputs);
+			const { data } = await axios.put(
+				`${baseURL}/employee/update/${id}`,
+				inputs
+			);
 			setLoading(false);
 			setSuccess(true);
 			setTimeout(() => {
 				setSuccess(false);
-			}, 3000);
-			console.log(data);
-			setEmployeeList((preState) => [...preState, data]);
+				setInputs(data);
+			}, 1000);
+			// setEmployeeList((preState) => [...preState, data]);
 		} catch (error) {
 			setLoading(false);
 			console.log(error);
 		}
 	};
+	useEffect(() => {
+		const getEmployeeData = async () => {
+			try {
+				const { data } = await axios.get(`${baseURL}/employee/get/${id}`);
+				console.log(data);
+				setInputs(data);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		getEmployeeData();
+	}, []);
 	return (
 		<div className="h-full">
 			<div className="px-6 bg-emerald-700 text-white py-2">
@@ -66,7 +84,7 @@ const EmployeeEdit = () => {
 				<form
 					action=""
 					onSubmit={handleFormSubmit}
-					className="border-2 shadow-md min-h-[600px] h-[630px] gap-5 flex flex-col p-10 w-[500px]"
+					className="border-2 shadow-md min-h-[600px] h-[630px] gap-5 flex flex-col p-10 w-[400px]"
 				>
 					<div className="flex flex-col w-full">
 						<label htmlFor="name" className="font-semibold">
@@ -179,6 +197,7 @@ const EmployeeEdit = () => {
 										name="course"
 										className="accent-emerald-600 transition-all h-4 w-4 "
 										value="BCA"
+										checked={inputs.course.includes("BCA")}
 									/>
 									<label htmlFor="coding">BCA</label>
 								</div>
@@ -189,7 +208,8 @@ const EmployeeEdit = () => {
 										id="mca"
 										name="course"
 										className="accent-emerald-600 transition-all h-4 w-4 "
-										value="mca"
+										value="MCA"
+										checked={inputs.course.includes("MCA")}
 									/>
 									<label htmlFor="music">MCA</label>
 								</div>
@@ -202,7 +222,8 @@ const EmployeeEdit = () => {
 										id="BSC"
 										className="accent-emerald-600 transition-all h-4 w-4 "
 										name="course"
-										value="bsc"
+										value="BSC"
+										checked={inputs.course.includes("BSC")}
 									/>
 									<label htmlFor="music">BSC</label>
 								</div>
@@ -213,7 +234,8 @@ const EmployeeEdit = () => {
 										id="cse"
 										name="course"
 										className="accent-emerald-600 transition-all h-4 w-4 "
-										value="cse"
+										value="CSE"
+										checked={inputs.course.includes("CSE")}
 									/>
 									<label htmlFor="music">CSE</label>
 								</div>
@@ -226,14 +248,14 @@ const EmployeeEdit = () => {
 						className="bg-emerald-700 mt-10 items-center gap-3 flex justify-center  text-white py-1 rounded"
 					>
 						{loading && <Loader className={"h-5 w-5"} />}
-						{loading ? "Creating" : "Create"} Employee{" "}
+						{loading ? "Updating" : "Update"} Employee{" "}
 					</button>
 					<div
 						className={`bg-green-500 ${
 							success ? "scale-y-100" : "scale-y-0"
 						} border py-2 rounded text-white text-center origin-top transition-all`}
 					>
-						Employee Created Successfully
+						Employee Updated Successfully
 					</div>
 				</form>
 			</div>
