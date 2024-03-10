@@ -50,8 +50,7 @@ const EmployeeEdit = () => {
 				`${baseURL}/employee/update/${id}`,
 				inputs
 			);
-			setLoading(false);
-			setSuccess(true);
+
 			console.log(data);
 			setEmployeeList((preState) => {
 				return preState.map((emp) => {
@@ -65,9 +64,13 @@ const EmployeeEdit = () => {
 				});
 			});
 			setTimeout(() => {
-				setSuccess(false);
+				setSuccess(true);
 				setInputs(data);
+				setLoading(false);
 			}, 1000);
+			setTimeout(() => {
+				setSuccess(false);
+			}, 2400);
 		} catch (error) {
 			setLoading(false);
 			console.log(error);
@@ -95,14 +98,14 @@ const EmployeeEdit = () => {
 			<div className="px-6 bg-emerald-700 text-white py-2">
 				Edit Employee Page
 			</div>
-			<div className=" items-center flex h-full ml-10 py-10 mt-3  justify-center">
+			<div className=" items-center flex h-full    justify-center">
 				{editLoading ? (
-					<Loader className="h-12 w-12" />
+					<Loader className="h-20 w-20" />
 				) : (
 					<form
 						action=""
 						onSubmit={handleFormSubmit}
-						className="border-2 shadow-md min-h-[600px] h-[630px] gap-5 flex flex-col p-10 w-[400px]"
+						className="border-2 shadow-md min-h-[600px] h-[630px] gap-5 flex flex-col p-10 w-[500px]"
 					>
 						<div className="flex flex-col w-full">
 							<label htmlFor="name" className="font-semibold">

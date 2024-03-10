@@ -10,8 +10,12 @@ const ContextProvider = ({ children }) => {
 	useEffect(() => {
 		const getEmployeeList = async () => {
 			try {
+				setLoading(true);
 				const { data } = await axios.get(`${baseURL}/employee/employees`);
 				setEmployeeList(data);
+				setTimeout(() => {
+					setLoading(false);
+				}, 1000);
 			} catch (error) {}
 		};
 		getEmployeeList();
