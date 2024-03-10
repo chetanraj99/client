@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useEffect, useState, useTransition } from "react";
+import { useContext, useEffect, useState } from "react";
 import Loader from "../components/Loader";
 import baseURL from "../api/axiosApi";
 import { GlobalContext } from "../context/ContextProvider";
